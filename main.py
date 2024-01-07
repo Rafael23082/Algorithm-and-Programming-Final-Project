@@ -1,7 +1,9 @@
 import pygame
 import sys
+from pygame import mixer
 
 pygame.init()
+mixer.init()
 
 # The size for the pygame window, and setting the window
 screen_width = 850
@@ -11,6 +13,12 @@ screen = pygame.display.set_mode((screen_width,screen_height))
 # Importing buttons and scaling it
 exit = pygame.image.load("exit.png").convert_alpha()
 exit_scaled = pygame.transform.scale(exit,(150,70))
+
+# Loading in sound effect
+jump_sound = pygame.mixer.Sound("jump.mp3")
+jump_sound.set_volume(0.3)
+death_sound = pygame.mixer.Sound("death.mp3")
+death_sound.set_volume(0.3)
 
 FPS = 60
 font_size = 60
@@ -671,6 +679,7 @@ def level_1(character):
                     moving_right = True
                 if event.key == pygame.K_w and player.in_air == False:
                     player.jump = True
+                    jump_sound.play()
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a:
                     moving_left = False
@@ -805,6 +814,7 @@ def level_2(character):
                     moving_right = True
                 if event.key == pygame.K_w and player.in_air == False:
                     player.jump = True
+                    jump_sound.play()
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a:
                     moving_left = False
@@ -938,6 +948,7 @@ def level_3(character):
                     moving_right = True
                 if event.key == pygame.K_w and player.in_air == False:
                     player.jump = True
+                    jump_sound.play()
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a:
                     moving_left = False
@@ -1067,6 +1078,7 @@ def level_4(character):
                     moving_right = True
                 if event.key == pygame.K_w and player.in_air == False:
                     player.jump = True
+                    jump_sound.play()
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a:
                     moving_left = False
@@ -1126,6 +1138,9 @@ def you_died(character):
     font = pygame.font.Font("Minecraftia-Regular.ttf",font_size)
     confirm_text = font.render("YOU DIED", True, (255,255,0))
 
+    # Will be used to make sure the audio is played once
+    death_sound_played = False
+
     while run:
 
         screen.fill((0,0,0))
@@ -1161,6 +1176,11 @@ def you_died(character):
 
                         # Retry
                         level_1(character)
+
+        # Makes sure the audio is played once
+        if death_sound_played == False:
+            death_sound.play()
+            death_sound_played = True
 
         pygame.display.update()
         clock.tick(60)
