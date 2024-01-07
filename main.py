@@ -18,7 +18,7 @@ exit_scaled = pygame.transform.scale(exit,(150,70))
 jump_sound = pygame.mixer.Sound("jump.mp3")
 jump_sound.set_volume(0.3)
 death_sound = pygame.mixer.Sound("death.mp3")
-death_sound.set_volume(0.3)
+death_sound.set_volume(0.6)
 
 FPS = 60
 font_size = 60
@@ -720,7 +720,7 @@ def level_1(character):
         # if the player reaches the door, it redirects to the next level
         for tile in world.door_list:
             if player_rectangle.colliderect(tile[1]):
-                level_2(player.character)
+                level_2(character)
 
         clock.tick(FPS)
         pygame.display.update()
@@ -1215,12 +1215,15 @@ def game_finished():
 
     select_button1 = Image(back_button_scaled, back_button_x, back_button_y, 1)
     select_button2 = Image(exit_button_scaled, exit_button_x, exit_button_y, 1)
+    
+    score_text = font.render(f"Score: {score}", True, (255,255,0))
 
     while run:
 
         # Displaying images
         screen.blit(background_scaled, (0, 0))
         screen.blit(display_text3, (280, 80))
+        screen.blit(score_text, (255, 190))
 
         select_button1.display()
         select_button2.display()
