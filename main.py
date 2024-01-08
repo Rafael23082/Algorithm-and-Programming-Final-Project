@@ -45,8 +45,8 @@ class Image:
     def display(self):
         screen.blit(self.image,(self.x,self.y))
 
-# The Scale_Player class is the class that animates the character, displaying the character, moving the character, and provides appropriate responses when colliding with tiles
-class Scale_Player:
+# The Player class is the class that animates the character, displaying the character, moving the character, and provides appropriate responses when colliding with tiles
+class Player:
 
     # Initializing 
     def __init__(self,character, scale, x, y):
@@ -617,7 +617,7 @@ def level_1(character):
         player_y = 407
 
     # Setting up initial coordinates and sizes
-    player = Scale_Player(character, scale, player_x, player_y)
+    player = Player(character, scale, player_x, player_y)
     
     enemy_scale = 0.15
     enemy1_minimum_x, enemy1_maximum_x, enemy1_x, enemy1_y = 200, 210, 200, 195 
@@ -772,7 +772,7 @@ def level_2(character):
     enemy2_scale, enemy2_minimum_x, enemy2_maximum_x, enemy2_x, enemy2_y = 0.3, 480, 800, 480, 105
     enemy3_scale, enemy3_minimum_x, enemy3_maximum_x, enemy3_x, enemy3_y = 0.15, 680, 730, 690, 405
 
-    player = Scale_Player(character, scale, player_x, player_y)
+    player = Player(character, scale, player_x, player_y)
     enemy1 = Enemy(enemy1_scale, enemy1_minimum_x, enemy1_maximum_x, enemy1_x , enemy1_y,"guard2.png")
     enemy2 = Enemy(enemy2_scale ,enemy2_minimum_x, enemy2_maximum_x, enemy2_x, enemy2_y,"guard2.png")
     enemy3 = Enemy(enemy3_scale, enemy3_minimum_x, enemy3_maximum_x, enemy3_x, enemy3_y,"guard.png" )
@@ -904,7 +904,7 @@ def level_3(character):
     enemy3_scale, enemy3_minimum_x, enemy3_maximum_x, enemy3_x, enemy3_y = 0.15, 300, 400, 300, 375
     enemy4_scale, enemy4_minimum_x, enemy4_maximum_x, enemy4_x, enemy4_y = 0.1, 120, 180, 120, 220
 
-    player = Scale_Player(character, scale, player_x, player_y)
+    player = Player(character, scale, player_x, player_y)
     enemy1 = Enemy(enemy1_scale ,enemy1_minimum_x, enemy1_maximum_x , enemy1_x, enemy1_y,"guard2.png")
     enemy2 = Enemy(enemy2_scale, enemy2_minimum_x, enemy2_maximum_x, enemy2_x, enemy2_y ,"guard2.png")
     enemy3 = Enemy(enemy3_scale, enemy3_minimum_x , enemy3_maximum_x, enemy3_x, enemy3_y,"guard.png")
@@ -1035,7 +1035,7 @@ def level_4(character):
         scale = 2.2
         player_y = 334
 
-    player = Scale_Player(character, scale, player_x, player_y)
+    player = Player(character, scale, player_x, player_y)
     enemy1 = Enemy(0.15,60,790,170,317,"guard.png")
     enemy2 = Enemy(0.15,60,790, 300, 317,"guard.png")
     enemy3 = Enemy(0.15, 60,790, 430, 317,"guard.png")
